@@ -1,0 +1,19 @@
+# WordPress config (contains DB credentials)
+wp-config.php
+
+# Uploaded media (large, not source-controlled)
+wp-content/uploads/
+
+# Large migration backup archives at the site root
+sm.zip
+sm140926.zip
+
+# WordPress cache/log noise
+wp-content/cache/
+wp-content/upgrade/
+*.log
+error_log
+
+# OS/editor cruft
+.DS_Store
+Thumbs.db

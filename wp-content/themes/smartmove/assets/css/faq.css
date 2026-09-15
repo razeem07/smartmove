@@ -1,0 +1,259 @@
+.faq-premium-section {
+    position: relative;
+    min-height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.faq-bg-image {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+/* Dark overlay with a gradient to make text pop on the right */
+.faq-premium-section::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: 0;
+}
+
+.faq-glass-card {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 60px;
+    border-radius: 40px;
+}
+
+/* Accordion Nodes */
+.faq-node {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-question {
+    display: flex;
+    align-items: center;
+    padding: 25px 0;
+    cursor: pointer;
+}
+
+.faq-count {
+    font-family: var(--smartmove-font-two);
+    color: white;
+    font-weight: 800;
+    font-size: 14px;
+    margin-right: 20px;
+    opacity: 0.8;
+}
+
+.faq-text {
+    color: #fff;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    flex-grow: 1;
+}
+
+/* Modern Plus/Minus Icon */
+.faq-plus {
+    width: 20px; height: 20px;
+    position: relative;
+}
+
+.faq-plus span {
+    position: absolute;
+    background: #fff;
+    transition: 0.3s;
+}
+
+.faq-plus span:nth-child(1) { top: 50%; left: 0; width: 100%; height: 2px; transform: translateY(-50%); }
+.faq-plus span:nth-child(2) { left: 50%; top: 0; width: 2px; height: 100%; transform: translateX(-50%); }
+
+.faq-node.active .faq-plus span:nth-child(2) { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+.faq-node.active .faq-text { color: white; }
+
+/* Smooth Answer Reveal */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.faq-node.active .faq-answer {
+    max-height: 500px;
+}
+
+.faq-answer-inner {
+    padding: 0 0 30px 35px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* FAQ new designs */
+/* Core Structural Layout */
+.faq-2col-section {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.faq-2col-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header Text Rules */
+.faq-2col-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.faq-2col-main-title {
+    font-weight: 400;
+    color: #2b2b2b;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.faq-2col-title-bold {
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* 2-Column CSS Grid System */
+.faq-2col-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: row;
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 991px) {
+    .faq-2col-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Custom Accordion Item wrapper */
+.faq-2col-item {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Default state for the Question block */
+.faq-2col-trigger {
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    background-color: #f4f4f4;
+    border-radius: 14px;
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
+}
+
+.faq-2col-question {
+    font-weight: 600;
+    color: #2b2b2b;
+    margin: 0;
+    padding-right: 20px;
+    line-height: 1.5;
+    transition: color 0.3s ease;
+}
+
+/* Custom Dynamic Indicator Icons (+ / -) */
+.faq-2col-indicator {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.faq-2col-icon-line {
+    position: absolute;
+    background-color: #000000;
+    border-radius: 2px;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.faq-2col-icon-line:nth-child(1) {
+    top: 6px;
+    left: 0;
+    width: 14px;
+    height: 2px;
+}
+
+.faq-2col-icon-line:nth-child(2) {
+    top: 0;
+    left: 6px;
+    width: 2px;
+    height: 14px;
+}
+
+/* Content Panel Animation Area */
+.faq-2col-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+.faq-2col-body {
+    padding: 20px 30px 10px 30px;
+    color: #555555;
+    line-height: 1.6;
+}
+
+.faq-2col-body p {
+    margin: 0;
+}
+
+/* ACTIVE ACCORDION STATES (Only changes the trigger box) */
+
+/* 1. Only the question block turns gold */
+.faq-2col-item.is-expanded .faq-2col-trigger {
+    background-color: #ab8954;
+}
+
+/* 2. Text and icons turn white within the active trigger */
+.faq-2col-item.is-expanded .faq-2col-question {
+    color: #ffffff;
+}
+
+.faq-2col-item.is-expanded .faq-2col-icon-line {
+    background-color: #ffffff;
+}
+
+/* 3. Turns the vertical icon line to make a minus (-) symbol */
+.faq-2col-item.is-expanded .faq-2col-icon-line:nth-child(2) {
+    transform: rotate(90deg);
+    opacity: 0;
+}
+
+/* 4. Slides the answer content open */
+.faq-2col-item.is-expanded .faq-2col-collapse {
+    max-height: 1000px;
+    transition: max-height 0.3s cubic-bezier(0.85, 0, 0.15, 1);
+}
+.faq-item-q p {
+    line-height: 20px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 17px;
+}

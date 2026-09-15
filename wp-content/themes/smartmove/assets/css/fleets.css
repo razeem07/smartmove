@@ -1,0 +1,723 @@
+.fleet-carousel-section {
+    background-color: white;
+    padding: 80px 0;
+    color: #fff;
+    overflow: hidden;
+}
+
+.fleet-carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    margin-bottom: 40px;
+}
+
+.fleet-carousel-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: black;
+}
+
+/* Filter Pill Buttons */
+.fleet-filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-btn {
+    background: #222;
+    border: none;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: var(--smartmove-color-theme-gold); /* Red from your image */
+}
+
+/* Swiper Card Style */
+.fleet-slide-card {
+    border-radius: 30px;
+    overflow: hidden;
+    height: 450px;
+    position: relative;
+}
+
+.fleet-slide-image {
+    height: 100%;
+    width: 100%;
+}
+
+.fleet-slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.fleet-slide-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(transparent, rgb(217 217 217 / 80%));
+}
+
+.fleet-slide-overlay h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Red Progress Bar Pagination */
+.fleet-swiper .swiper-pagination {
+    position: relative;
+    margin-top: 40px;
+    bottom: 0 !important;
+}
+
+.fleet-swiper .swiper-pagination-bullet {
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    background: #333;
+    opacity: 1;
+}
+
+.fleet-swiper .swiper-pagination-bullet-active {
+    background: var(--smartmove-color-theme-blue); !important;
+    width: 80px; /* Makes the active bar longer like the photo */
+}
+
+
+/* --- Fleet Grid Section --- */
+.fleet-grid-section {
+    padding: 80px 0;
+    background-color: #f8f8f8; /* Soft neutral background */
+}
+
+.fleet-card {
+    background: #ffffff;
+    border-radius: 40px; /* High rounding per screenshot */
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    padding: 25px; /* Internal spacing for all elements */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+}
+
+.fleet-card:hover {
+    box-shadow: 0 15px 45px rgba(0,0,0,0.07);
+    transform: translateY(-5px);
+}
+
+/* --- Image Handling --- */
+.fleet-card__image {
+    height: 180px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.fleet-card__image img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain; /* Prevents car silhouette cropping */
+}
+
+/* --- Content Styling --- */
+.fleet-card__content {
+    background: transparent !important; /* Forces removal of blue background */
+    padding: 0 !important;
+}
+
+.fleet-card__title {
+    color: #333 !important;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* --- Pricing Blocks --- */
+.fleet-card__pricing {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+.price-item {
+    background: #efefef; /* Light gray box from screenshot */
+    padding: 10px 15px;
+    border-radius: 10px;
+    flex: 1;
+    text-align: left;
+}
+
+.price-label {
+    font-size: 12px;
+    color: #666;
+    margin-right: 5px;
+}
+
+.price-value {
+    color: #000 !important;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.price-divider {
+    display: none; /* Removed for this design */
+}
+
+/* --- Action Row (Buttons) --- */
+.fleet-card__actions {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Spacing between Read More and WhatsApp */
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.fleet-card__btn {
+    background-color: #a6895a; /* Gold/Tan color */
+    color: #ffffff !important;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.fleet-card__btn:hover {
+    background-color: #8e7349;
+}
+
+/* WhatsApp Icon Styling */
+.fleet-whatsapp-btn {
+    position: static !important; /* Moves it from absolute to inline-flex */
+    background-color: #25d366;
+    color: white !important;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    transition: transform 0.3s;
+}
+
+.fleet-whatsapp-btn:hover {
+    transform: scale(1.1);
+    background-color: #1ebd59;
+}
+
+
+
+/* Latest look and feel */
+/* Section Container Framework */
+.erc-fleet-section {
+    padding: 60px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+.erc-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.erc-header {
+    margin-bottom: 30px;
+}
+
+.erc-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 4px 0;
+}
+
+.erc-subtitle {
+    font-size: 16px;
+    color: #444444;
+    margin: 0;
+}
+
+/* 4-Column Grid System */
+.erc-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 1024px) {
+    .erc-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .erc-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Individual Card Styling */
+.erc-card {
+    background: #ffffff;
+    border: 1px solid #f1f1f1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Image & Badge Overlay Rules */
+.erc-image-wrapper {
+    position: relative;
+    background-color: #f8f8f8;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.erc-car-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.erc-brand-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ffffff;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.erc-brand-badge img {
+    width: 18px;
+    height: auto;
+}
+
+/* Meta & Content Area */
+.erc-content {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.erc-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+/* Tags Styling */
+.erc-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: capitalize;
+}
+
+.erc-badge-luxury {
+    background-color: #fbf5e6;
+    color: #bfa15f;
+}
+
+.erc-badge-exotic {
+    background-color: #f3ecfb;
+    color: #8a4bcf;
+}
+
+.erc-specs {
+    font-size: 13px;
+    color: #777777;
+}
+
+/* Typography and Copy colors */
+.erc-car-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111111;
+    margin: 0 0 6px 0;
+}
+
+.erc-price-text {
+    font-size: 14px;
+    color: #b59449;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+}
+
+/* Modern Layout Buttons */
+.erc-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto; /* Pushes buttons smoothly to the card base */
+}
+
+.erc-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.erc-btn svg {
+    margin-top: -1px;
+}
+
+/* Button variants matching image */
+.erc-btn-call {
+    background-color: #baa462;
+    color: #ffffff;
+}
+
+.erc-btn-call:hover {
+    background-color: #a38e51;
+}
+
+.erc-btn-whatsapp {
+    background-color: #1ed15e;
+    color: #ffffff;
+}
+
+.erc-btn-whatsapp:hover {
+    background-color: #19b650;
+}
+
+/* Footer Section ("View all") */
+.erc-footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.erc-view-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111111;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.erc-view-all:hover {
+    color: #baa462;
+}
+
+
+/* Ensure the link container acts as the anchor frame for absolute children */
+.erc-card-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-decoration: none;
+}
+
+/* Base transparent overlay (Hidden by default using opacity) */
+.erc-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark semi-transparent layer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 2;
+}
+
+/* Text styling matching the screenshot's premium UI aesthetic */
+.erc-hover-text {
+    color: #ffffff;
+    font-weight: 600;
+    border: 1px solid #ffffff;
+    padding: 8px 18px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+/* Trigger actions when hovering over the card image wrapper */
+.erc-image-wrapper:hover .erc-hover-overlay {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Subtle upward nudge animation for the text element on hover */
+.erc-image-wrapper:hover .erc-hover-text {
+    transform: translateY(0);
+}
+
+/* Smooth micro-zoom effect on the underlying car asset image */
+.erc-car-img {
+    transition: transform 0.5s ease;
+}
+
+.erc-image-wrapper:hover .erc-car-img {
+    transform: scale(1.04);
+}
+
+
+
+
+/* Single Fleets */
+/* Page structural background and container rules */
+.fsd-single-page {
+    background-color: #fafafa;
+    padding: 60px 0 100px 0;
+}
+
+.fsd-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Back Link Row formatting */
+.fsd-nav-row {
+    margin-bottom: 24px;
+}
+
+.fsd-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ab8954;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+    transition: color 0.2s ease;
+}
+
+.fsd-back-link:hover {
+    color: #8c6e3f;
+}
+
+/* Master Asymmetric Layout Grid splits */
+.fsd-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 40px;
+    align-items: start;
+}
+
+@media (max-width: 991px) {
+    .fsd-split-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Left main content block elements */
+.fsd-main-column {
+    background-color: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #eeeeee;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.fsd-media-holder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.fsd-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.fsd-details-holder {
+    padding: 40px;
+}
+
+@media (max-width: 600px) {
+    .fsd-details-holder {
+        padding: 24px;
+    }
+}
+
+.fsd-main-title {
+    color: #1a1a1a;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    line-height: 1.2;
+}
+
+/* Spec sheet metadata badge strip */
+.fsd-specs-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.fsd-spec-tag {
+    background-color: #f4f4f4;
+    color: #444444;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.fsd-spec-tag strong {
+    color: #111111;
+}
+
+.fsd-content-rich-text {
+    color: #333333;
+    line-height: 1.8;
+}
+
+/* Right Sticky Sidebar formatting rules */
+.fsd-sticky-widget {
+    position: sticky;
+    top: 40px;
+}
+
+.fsd-booking-card {
+    background-color: #1c1c1e;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.fsd-widget-heading {
+    color: #ffffff;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+}
+
+/* Flat minimal clean pricing lists tables */
+.fsd-pricing-table {
+    margin-bottom: 24px;
+}
+
+.fsd-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.fsd-price-row:last-child {
+    border-bottom: none;
+}
+
+.fsd-price-row.highlight {
+    background-color: rgba(255,255,255,0.02);
+    margin: 4px -10px;
+    padding: 14px 10px;
+    border-radius: 8px;
+}
+
+.fsd-price-row .fsd-label {
+    color: #aaaaaa;
+}
+
+.fsd-price-row .fsd-amount {
+    color: #ab8954;
+    font-weight: 700;
+}
+
+/* Call to action button matching screenshot green style tokens */
+.fsd-whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #25d366;
+    color: #ffffff;
+    padding: 14px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.fsd-whatsapp-btn:hover {
+    background-color: #1ebd58;
+}
+
+.fsd-whatsapp-btn svg {
+    margin-top: -1px;
+}
+
+/* Protection/Trust Badge items layout lists */
+.fsd-perks-list {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fsd-perk-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #cccccc;
+    font-size: 14px;
+}
+
+.fsd-perk-item svg {
+    flex-shrink: 0;
+}

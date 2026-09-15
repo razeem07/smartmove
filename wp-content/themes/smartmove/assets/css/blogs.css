@@ -1,0 +1,111 @@
+/* --- Modern Blog Section --- */
+.blogs-section, .blog-one--dark {
+    padding: 100px 0;
+    background-color: #ffffff; /* Clean white background */
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Card Container */
+.blog-card, .blog-one__single {
+    background: #ffffff;
+    border-radius: 24px; /* Soft, modern corners */
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #f0f0f0; /* Very light border */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Subtle depth */
+}
+
+.blog-card:hover, .blog-one__single:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(166, 137, 90, 0.15); /* Glow using your gold color */
+    border-color: #a6895a;
+}
+
+/* Image Handling */
+.blog-img-wrapper, .blog-one__img-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10; /* Modern cinematic ratio */
+    overflow: hidden;
+}
+
+.blog-card-img, .blog-one__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.blog-card:hover .blog-card-img, 
+.blog-one__single:hover .blog-one__img img {
+    transform: scale(1.08);
+}
+
+/* Content Area */
+.blog-card-body, .blog-one__content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Title Styling */
+.blog-title, .blog-one__title {
+    margin-bottom: 15px;
+}
+
+.blog-title a, .blog-one__title a {
+    color: #1a1a1a;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.blog-title a:hover, .blog-one__title a:hover {
+    color: #a6895a;
+}
+
+/* Excerpt/Text */
+.blog-excerpt, .blog-one__text p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limits to 3 lines for uniformity */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* The Gold Pill Button */
+.read-more-link, .blog-one__btn a {
+    align-self: flex-start; /* Keeps button on left */
+    background-color: #a6895a;
+    color: #ffffff !important;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    box-shadow: 0 4px 15px rgba(166, 137, 90, 0.3);
+}
+
+.read-more-link:hover, .blog-one__btn a:hover {
+    background-color: #1a1a1a; /* Flips to black on hover for contrast */
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide unneeded elements */
+.blog-date-badge, .blog-one__date, .blog-one__meta, .blog-one__btn span {
+    display: none !important;
+}

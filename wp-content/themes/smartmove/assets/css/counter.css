@@ -1,0 +1,102 @@
+/* --- MEDIUM-SIZED COUNTER SECTION --- */
+
+.counter-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.counter-tagline {
+    display: block;
+    color: #FF2D55;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.counter-title {
+    font-size: 48px; /* Slightly reduced from 56px */
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin: 40px auto 0 auto;
+}
+
+.counter-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 35px; 
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.counter-circle {
+    background: #fff;
+    width: 210px;  /* Balanced size */
+    height: 210px; 
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.04);
+}
+
+/* Number Wrapper & Centering */
+.counter-number-wrapper {
+    display: flex;
+    justify-content: center; /* Horizontally center number group */
+    overflow: hidden;
+    height: 52px; /* Matching Font Size */
+    line-height: 52px;
+    font-size: 52px; 
+    font-weight: 800;
+    color: var(--smartmove-color-theme-blue);
+}
+
+.digit-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center digits in column */
+    transition: transform 2s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+.digit-number, .static-char {
+    height: 52px; /* Must match wrapper height exactly */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.static-char {
+    padding: 0 2px;
+}
+
+.counter-label {
+    color: var(--smartmove-color-theme-blue2);
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .counter-grid {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .counter-circle {
+        width: 190px;
+        height: 190px;
+    }
+    .counter-title {
+        font-size: 36px;
+    }
+}

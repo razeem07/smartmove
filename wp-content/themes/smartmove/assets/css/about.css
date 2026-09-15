@@ -1,0 +1,557 @@
+/* Dark Gray Theme Override */
+.about-two--dark {
+    padding: 120px 0;
+    background-color: white; /* Deep Dark Gray Background */
+    position: relative;
+}
+
+.about-two__content-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: var(--smartmove-font-two);
+}
+
+.text-white-50 {
+    color: rgba(255, 255, 255, 0.6) !important;
+    line-height: 1.8;
+}
+
+.border-radius-20 {
+    border-radius: 20px;
+}
+
+/* Feature Cards - Dark Mode Styling */
+.about-two__feature-card {
+    position: relative;
+    padding: 40px 30px;
+    background: var(--smartmove-color-theme-blue); /* Slightly lighter gray for the cards */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    transition: all 0.4s ease;
+    margin-bottom: 30px;
+    height: 100%;
+}
+
+.about-two__feature-card:hover {
+    background: var(--smartmove-color-theme-gold);
+    border-color: var(--smartmove-color-theme-gold); /* Highlight border on hover */
+    transform: translateY(-10px);
+}
+
+.about-two__card-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--smartmove-base); /* Theme Red line instead of icon */
+    margin-bottom: 20px;
+    transition: width 0.4s ease;
+}
+
+.about-two__feature-card:hover .about-two__card-divider {
+    width: 60px;
+}
+
+.about-two__card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: var(--smartmove-font-two);
+}
+
+.about-two__card-text {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.mt-50 { margin-top: 50px; }
+
+
+/* About Page */
+.about-banner-compact {
+    position: relative;
+    height: 550px; /* Much shorter than home banner */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: var(--smartmove-color-theme-blue, #000);
+}
+
+.banner-image-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65%; /* Only takes up the right portion */
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    /* The "Out of Box" Speed Cut */
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); 
+}
+
+/* Ensure the wrapper serves as the relative parent */
+.banner-image-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%); 
+}
+
+/* Ensure the gradient div stretches to cover the image container */
+/* Container must stretch over the image */
+.banner-overlay-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Solid dark overlay with 60% opacity */
+.banner-overlay-gradient::before {
+    content: ""; /* Required for pseudo-elements to render */
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background-color: rgba(0, 0, 0, 0.6) !important; /* Adjust 0.6 to make it darker or lighter */
+    z-index: 2 !important;
+    pointer-events: none !important;
+}
+
+/* Dark text shadow for title and subtitle */
+.compact-title,
+.banner-subtext{
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.about-content-box {
+    position: relative;
+    z-index: 10;
+    margin-top: 10rem !important;
+}
+
+.compact-title {
+    display: block !important;
+    text-align: left !important;
+    margin: 0 0 18px 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+    font-size: clamp(2.1rem, 4.5vw, 3.8rem) !important;
+    line-height: 1.15 !important;
+    color: #ffffff !important;
+}
+
+.compact-title span {
+    color: var(--smartmove-color-theme-gold, #c5a059);
+    display: block;
+}
+
+.accent-line {
+    width: 60px;
+    height: 3px;
+    background: var(--smartmove-color-theme-gold, #c5a059);
+    margin-bottom: 20px;
+}
+
+.banner-subtext {
+    display: block !important;
+    text-align: left !important;
+    margin: 0 0 28px 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 580px !important;
+    transform: none !important;
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem) !important;
+    line-height: 1.6 !important;
+    color: #ffffff !important;
+}
+
+/* Mobile Fixes */
+@media (max-width: 991px) {
+    .banner-image-wrapper {
+        width: 100%;
+        opacity: 0.4;
+        clip-path: none;
+    }
+    .about-banner-compact {
+        height: 400px;
+        text-align: center;
+    }
+    .accent-line {
+        margin: 0 auto 20px;
+    }
+}
+
+
+
+
+/* vision mission */
+
+/*--------------------------------------------------------------
+# Features Section
+--------------------------------------------------------------*/
+.features-one {
+    position: relative;
+    padding: 120px 0 90px;
+    z-index: 1;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.features-card {
+    position: relative;
+    display: block;
+    background-color: var(--smartmove-color-theme-blue2);
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 500ms ease;
+    border: 1px solid rgba(255,255,255,0.05);
+    z-index: 1;
+}
+
+.features-card:hover,
+.features-card.active {
+    transform: translateY(-10px);
+    border-color: var(--smartmove-base);
+}
+
+.features-card__icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(var(--smartmove-white-rgb), 0.05);
+    color: var(--smartmove-base);
+    font-size: 40px;
+    border-radius: 50%;
+    margin: 0 auto 30px;
+    transition: all 500ms ease;
+}
+
+.features-card:hover .features-card__icon {
+    background-color: var(--smartmove-base);
+    color: var(--smartmove-white);
+}
+
+.features-card__title {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.features-card__title a {
+    color: var(--smartmove-white);
+}
+
+.features-card__text {
+    color: rgba(var(--smartmove-white-rgb), 0.7);
+    margin-bottom: 30px;
+    font-size: 15px;
+}
+
+.features-card__btn .thm-btn {
+    padding: 8px 25px;
+    font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .features-one {
+        padding: 80px 0 50px;
+    }
+}
+
+
+
+/* team member leadership */
+.leadership-section {
+    padding: 100px 0;
+    background-color: white; /* Matching your theme background */
+}
+
+.leadership-card {
+    background: white;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: revealCard 0.8s ease forwards;
+}
+
+/* Animations */
+@keyframes revealCard {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.leadership-card:hover {
+    transform: translateY(-15px);
+/*     border-color: var(--smartmove-color-theme-gold);
+    background: var(--smartmove-color-theme-blue2); */
+}
+
+/* Image Styling */
+.member-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    filter: grayscale(20%);
+    transition: filter 0.4s ease;
+}
+
+.leadership-card:hover .member-image img {
+    filter: grayscale(0%);
+}
+
+/* Typography */
+.member-name {
+    color: var(--smartmove-color-theme-blue);
+    font-family: var(--smartmove-font-two);
+    font-size: 22px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.member-designation {
+    color: var(--smartmove-color-theme-gold);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Staggered Entrance */
+.col-lg-4:nth-child(1) .leadership-card { animation-delay: 0.2s; }
+.col-lg-4:nth-child(2) .leadership-card { animation-delay: 0.4s; }
+.col-lg-4:nth-child(3) .leadership-card { animation-delay: 0.6s; }
+
+
+/* mission */
+/* Section Styling */
+.mission-vision-section {
+    padding: 120px 0;
+    background-color: var(--smartmove-color-theme-blue2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Image Box Styling */
+.mission-image-box {
+    position: relative;
+    padding-right: 30px;
+}
+
+.rounded-30 {
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: -20px;
+    right: 10px;
+    background: var(--smartmove-color-theme-gold);
+    padding: 20px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Card Overrides for Mission/Vision */
+.mission-card {
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03) !important;
+}
+
+.mission-card:hover {
+    transform: translateX(10px) !important; /* Slide right instead of left */
+    background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Typography Harmony */
+.gold-text {
+    color: var(--smartmove-white);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.white-text {
+    color: var(--smartmove-white);
+    margin: 0;
+    /* font-weight: 700; */
+}
+
+/* Simple Floating Animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .mission-image-box {
+        margin-bottom: 50px;
+        padding-right: 0;
+    }
+}
+
+
+
+/* Mobile Fixes */
+@media (max-width: 991px) {
+    .about-banner-compact {
+        /* Change height to min-height so it expands if text is long */
+        height: auto; 
+        min-height: 530px; 
+        padding: 90px 0 50px; /* Adds space at top and bottom */
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+
+    .banner-image-wrapper {
+        width: 100%;
+        opacity: 0.3; /* Slightly lower opacity helps text readability on small screens */
+        clip-path: none;
+    }
+
+    .about-content-box {
+        /* Reduce the massive 10rem margin which is causing the clipping */
+        margin-top: 0 !important; 
+        z-index: 10;
+        width: 100%;
+    }
+
+    .compact-title {
+        font-size: 32px; /* Shrink font slightly for mobile screens */
+        margin-bottom: 10px;
+    }
+
+    .banner-subtext {
+        font-size: 16px;
+        max-width: 100%; /* Allow text to use full width */
+        padding: 0 15px; /* Prevent text from hitting screen edges */
+    }
+
+    .accent-line {
+        margin: 0 auto 20px;
+    }
+}
+
+
+/* Section Container Wrapper */
+.prt-partners-section {
+    padding: 60px 0;
+    background-color: #fdfdfd;
+}
+
+.prt-container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Header Elements */
+.prt-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.prt-title {
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+/* Flexible Layout Auto-Grid */
+.prt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Individual Partner Cells */
+.prt-item {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.prt-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.54);
+    border-color: #ab8954; /* Optional subtle border accent color change */
+}
+
+/* Responsive Logo Images Restraints */
+.prt-logo-wrapper {
+    width: 100%;
+    max-width: 140px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prt-logo-img {
+    max-width: 100%;
+    height: auto;
+    max-height: 60px; /* Limits tall logos from breaking layout heights */
+    object-fit: contain;
+/*     filter: grayscale(100%); */
+    opacity: 0.6;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* Reveal original branding colors on cell hover */
+.prt-item:hover .prt-logo-img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Fallback Text styling */
+.prt-fallback-text {
+    color: #888888;
+    font-weight: 600;
+    text-align: center;
+}

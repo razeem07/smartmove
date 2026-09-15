@@ -1,0 +1,196 @@
+/*
+Theme Name: SmartMove
+Theme URI: Customized theme
+Author: Codxel
+Author URI: Codxel Technologies
+Description: This is a custom theme for SmartMove. It offers flexible design options, supported by a variety of patterns for different page types, such as services and landing pages, making it ideal for building personal blogs, professional portfolios, online magazines, or business websites. Its templates cater to various blog styles, from text-focused to image-heavy layouts. Additionally, it supports international typography and diverse color palettes, ensuring accessibility and customization for users worldwide. 
+
+Tags: One Column, Custom Colors, custom-menu, Custom Logo, Editor Style, Featured Images, Site Editor, Block Editor Patterns,threaded-comments, translation-ready, Wide Blocks, Block Editor Styles, Style Variations, Accessibility Ready, Blog, Portfolio, News
+
+Version: 1.0
+
+Text Domain: SmartMove
+This theme, like WordPress, is licensed under the Codxel Technologies.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+/* Import Poppins from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/* Specific target for common text elements to ensure inheritance */
+html, body, div, p, span, h1, h2, h3, h4, h5, h6, a, li, input, button, textarea {
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* 1. The Default State (Hidden & Ready to move) */
+/* This ensures that when the '.active' class is removed, the car hides immediately */
+.main-slider-two__shape-1 img {
+    opacity: 0;
+    transform: translateX(-150%) scale(0.5);
+    transition: opacity 0.3s ease; /* Smoothly hide when leaving the slide */
+}
+
+/* 2. The Animation Trigger */
+/* We target the image ONLY when its parent slide has the active class */
+.active .main-slider-two__shape-1 img,
+.swiper-slide-active .main-slider-two__shape-1 img,
+.owl-item.active .main-slider-two__shape-1 img {
+    animation: carZoomSkid 1.2s cubic-bezier(0.15, 0.85, 0.35, 1.1) forwards;
+    animation-delay: 0.4s; 
+}
+
+/* 3. The Keyframes (Keep these as they were) */
+@keyframes carZoomSkid {
+    0% {
+        opacity: 0;
+        transform: translateX(-150%) scale(0.5) rotate(-5deg);
+        filter: blur(10px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(10%) scale(1.1) rotate(0deg);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotate(0deg);
+        filter: blur(0);
+    }
+}
+
+/* 2. Hide on Mobile */
+@media (max-width: 767px) {
+    .main-slider-two__shape-1 {
+        display: none !important;
+    }
+}
+
+
+/* 1. The Animation Logic */
+@keyframes phoneShake {
+  0% { transform: rotate(-10deg); }
+  5% { transform: rotate(15deg); }
+  10% { transform: rotate(-15deg); }
+  15% { transform: rotate(15deg); }
+  20% { transform: rotate(-15deg); }
+  25% { transform: rotate(10deg); }
+  30% { transform: rotate(-10deg); }
+  35% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+
+/* =============================================================
+   1. Title Fade Animations (Left, Right, Bottom)
+   ============================================================= */
+.fade-left,
+.fade-right,
+.fade-bottom {
+  opacity: 0; /* Hidden by default until scrolled into view */
+}
+
+.fade-left.active {
+  animation: fadeFromLeft 1s ease-out forwards;
+}
+
+.fade-right.active {
+  animation: fadeFromRight 1s ease-out forwards;
+}
+
+.fade-bottom.active {
+  animation: fadeFromBottom 1s ease-out forwards;
+}
+
+@keyframes fadeFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =============================================================
+   2. Responsive Wave Text Animation
+   ============================================================= */
+.wave-anim {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.wave-anim span {
+  display: inline-block;
+  opacity: 0; /* Hidden initially */
+  white-space: pre; /* Keeps word spaces intact */
+}
+
+/* Paused when out of view, running when active */
+.wave-anim.active span {
+  opacity: 1;
+  animation: wave 1.8s ease-in-out infinite;
+  animation-delay: calc(0.08s * var(--i));
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+/* =============================================================
+   3. Image Lift & Fade-In Animation
+   ============================================================= */
+.animated-image {
+  opacity: 0; /* Hidden by default */
+}
+
+.animated-image.active {
+  animation: imageFadeIn 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes imageFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.65) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
