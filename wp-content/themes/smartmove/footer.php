@@ -67,6 +67,18 @@
                                             </p>
                                         </li>
                                         <?php endif; ?>
+
+                                        <?php if ( get_theme_mod('footer_email_2') ) : ?>
+                                        <li>
+                                            <div class="footer-widget__contact-icon-box">
+                                                <span class="icon-mail"></span>
+                                                <p>Email</p>
+                                            </div>
+                                            <p class="footer-widget__contact-text">
+                                                <a href="mailto:<?php echo antispambot(get_theme_mod('footer_email_2')); ?>"><?php echo esc_html(get_theme_mod('footer_email_2')); ?></a>
+                                            </p>
+                                        </li>
+                                        <?php endif; ?>
                                     </ul>
                                 </div>
                             </div>

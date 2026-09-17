@@ -5926,19 +5926,23 @@ ul {
 /* Button Styling */
 .service-card__btn {
     margin-top: auto;
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #333;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #baa462;
     color: #fff !important;
     text-decoration: none;
     border-radius: 6px;
     font-weight: 600;
     text-align: center;
-    transition: background 0.3s;
+    transition: background-color 0.3s;
 }
 
 .service-card__btn:hover {
-    background-color: #007bff;
+    background-color: #a38e51;
 }
 
 

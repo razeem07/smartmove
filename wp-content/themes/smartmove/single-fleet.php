@@ -81,7 +81,7 @@
                             <?php endif; ?>
                         </div>
 
-						<a href="https://wa.me/<?php echo preg_replace('/\D/', '', get_theme_mod('footer_phone')); ?>?text=I+would+like+to+book+the+<?php echo urlencode($car_name); ?>" 
+						<a href="https://wa.me/<?php echo preg_replace('/\D/', '', get_theme_mod('footer_whatsapp')); ?>?text=I+would+like+to+book+the+<?php echo urlencode($car_name); ?>"
 						   target="_blank" 
 						   class="fsd-whatsapp-btn">
 							<i class="bi bi-whatsapp"></i>

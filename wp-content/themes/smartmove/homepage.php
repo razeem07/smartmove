@@ -462,7 +462,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
 									<i class="bi bi-telephone-fill"></i>
 									Call
 								</a>
-								<a href="https://wa.me/<?php echo preg_replace('/\D/', '', get_theme_mod('footer_phone')); ?>?text=I+would+like+to+book+the+<?php the_title(); ?>" target="_blank" class="erc-btn erc-btn-whatsapp">
+								<a href="https://wa.me/<?php echo preg_replace('/\D/', '', get_theme_mod('footer_whatsapp')); ?>?text=I+would+like+to+book+the+<?php the_title(); ?>" target="_blank" class="erc-btn erc-btn-whatsapp">
 									<i class="bi bi-whatsapp"></i>
 									WhatsApp
 								</a>

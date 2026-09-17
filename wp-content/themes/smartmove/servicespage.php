@@ -33,18 +33,19 @@ if ($services_query->have_posts()) : ?>
 
         <div class="service-card__body">
             <h3 class="service-card__title fade-left">
-                <a href="#"><?php the_title(); ?></a>
+                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
             </h3>
-            
+
             <div class="service-card__excerpt">
                 <p clas=" fade-right">
-					<?php echo get_the_content(); ?>
+					<?php echo wp_trim_words( get_the_content(), 20, '...' ); ?>
 				</p>
             </div>
-            
-<!--             <a href="<?php the_permalink(); ?>" class="service-card__btn">
+
+            <a href="<?php the_permalink(); ?>" class="service-card__btn">
+                <i class="bi bi-arrow-right-circle-fill"></i>
                 View Service
-            </a> -->
+            </a>
         </div>
     </div>
 </div>

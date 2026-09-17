@@ -61,6 +61,23 @@
       </div>
       <?php endif; ?>
 
+      <!-- Second Email -->
+      <?php if ( get_theme_mod('footer_email_2') ) : ?>
+      <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="500">
+        <div class="contact-box text-center p-4 h-100 shadow-sm">
+          <div class="icon-circle mb-3">
+            <i class="bi bi-envelope-fill"></i>
+          </div>
+          <h5 class="fw-bold fade-left">Operations Email</h5>
+          <p class="mb-0 fade-bottom">
+            <a href="mailto:<?php echo antispambot(get_theme_mod('footer_email_2')); ?>" class="text-decoration-none text-dark">
+                <?php echo esc_html(get_theme_mod('footer_email_2')); ?>
+            </a>
+          </p>
+        </div>
+      </div>
+      <?php endif; ?>
+
     </div>
   </div>
 </section>

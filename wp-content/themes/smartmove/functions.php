@@ -6,6 +6,28 @@
 
  require get_template_directory() . '/inc/meta-boxes/meta-boxes-core.php';
 
+/**
+ * Navbar fleet-search widget: an icon that expands into a search input.
+ * Submitting redirects to the Our Fleets page with a ?fleet_search= query
+ * arg, which ourfleetspage.php reads on load to pre-run the same live
+ * filter used on that page. Shared markup for the main header, sticky
+ * header, and mobile nav so all three stay in sync.
+ */
+function smartmove_render_navbar_search( $variant = 'default' ) {
+    $fleets_url = home_url( '/our-fleets/' );
+    $wrapper_class = 'main-menu-two__search main-menu-two__search--' . esc_attr( $variant );
+    ?>
+    <div class="<?php echo $wrapper_class; ?>">
+        <button type="button" class="main-menu-two__search-toggle" aria-label="Search fleets">
+            <i class="fa fa-search"></i>
+        </button>
+        <form class="main-menu-two__search-form" action="<?php echo esc_url( $fleets_url ); ?>" method="get">
+            <input type="text" name="fleet_search" class="main-menu-two__search-input" placeholder="Search fleets by name or brand...">
+        </form>
+    </div>
+    <?php
+}
+
 
 // Load Bootstrap + Theme CSS
 function mytheme_enqueue_styles() {
@@ -39,6 +61,7 @@ function mytheme_enqueue_styles() {
 	wp_enqueue_style('desktop-css-testimonials', get_template_directory_uri() . '/assets/css/testimonials.css');
 	wp_enqueue_style('desktop-css-faq', get_template_directory_uri() . '/assets/css/faq.css');
 	wp_enqueue_style('desktop-css-blogs', get_template_directory_uri() . '/assets/css/blogs.css');
+	wp_enqueue_style('desktop-css-single-service', get_template_directory_uri() . '/assets/css/single-service.css');
 	
     // Theme style.css (required by WordPress, can be empty or minimal)
     wp_enqueue_style('theme-style', get_stylesheet_uri());

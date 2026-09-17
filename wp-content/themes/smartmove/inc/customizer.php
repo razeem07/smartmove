@@ -97,6 +97,17 @@ function mytheme_footer_customize_register( $wp_customize ) {
         'type'    => 'email',
     ) );
 
+    // Second Email
+    $wp_customize->add_setting( 'footer_email_2', array(
+        'default' => '',
+        'sanitize_callback' => 'sanitize_email',
+    ) );
+    $wp_customize->add_control( 'footer_email_2', array(
+        'label'   => __( 'Second Email Address', 'mytheme' ),
+        'section' => 'footer_settings',
+        'type'    => 'email',
+    ) );
+
     // Social Links
     $socials = array( 'facebook', 'instagram', 'twitter', 'linkedin' );
     foreach ( $socials as $social ) {

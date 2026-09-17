@@ -10,12 +10,22 @@
 <section class="erc-fleet-section">
     <div class="erc-container">
         
-        <div class="erc-header">
-            <h2 class="section-title__title text-dark fade-left">Car Rental</h2>
-            <p class="erc-subtitle fade-right">Discover Exotic Car Rental cars</p>
+        <?php $smartmove_fleet_search = isset( $_GET['fleet_search'] ) ? sanitize_text_field( wp_unslash( $_GET['fleet_search'] ) ) : ''; ?>
+        <div class="erc-header-row">
+            <div class="erc-header">
+                <h2 class="section-title__title text-dark fade-left">Car Rental</h2>
+                <p class="erc-subtitle fade-right">Discover Exotic Car Rental cars</p>
+            </div>
+
+            <div class="erc-search-bar">
+                <i class="bi bi-search erc-search-icon"></i>
+                <input type="text" id="erc-fleet-search" class="erc-search-input" placeholder="Search by name or brand (e.g. Ferrari, Lamborghini)..." value="<?php echo esc_attr( $smartmove_fleet_search ); ?>">
+            </div>
         </div>
 
-        <div class="erc-grid">
+        <p id="erc-no-results" class="erc-no-results" style="display:none;">No fleets match your search.</p>
+
+        <div class="erc-grid" id="erc-fleet-grid">
             <?php
             $args = array(
                 'post_type'      => 'fleet',
@@ -26,7 +36,7 @@
             if ($query->have_posts()) :
                 while ($query->have_posts()) : $query->the_post();
                 ?>
-                    <div class="erc-card">
+                    <div class="erc-card" data-fleet-name="<?php echo esc_attr( strtolower( get_the_title() ) ); ?>">
 						<div class="erc-image-wrapper">
 							<a href="<?php the_permalink(); ?>" class="erc-card-link animated-image">
 								<?php if (has_post_thumbnail()) : ?>
@@ -56,7 +66,7 @@
 									<i class="bi bi-telephone-fill"></i>
 									Call
 								</a>
-								<a href="https://wa.me/<?php echo preg_replace('/\D/', '', get_theme_mod('footer_phone')); ?>?text=I+would+like+to+book+the+<?php the_title(); ?>"  target="_blank" class="erc-btn erc-btn-whatsapp">
+								<a href="https://wa.me/<?php echo preg_replace('/\D/', '', get_theme_mod('footer_whatsapp')); ?>?text=I+would+like+to+book+the+<?php the_title(); ?>"  target="_blank" class="erc-btn erc-btn-whatsapp">
 									<i class="bi bi-whatsapp"></i>
 									WhatsApp
 								</a>
@@ -71,7 +81,36 @@
     </div>
 </section>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var searchInput = document.getElementById('erc-fleet-search');
+    var grid = document.getElementById('erc-fleet-grid');
+    var noResults = document.getElementById('erc-no-results');
+    if (!searchInput || !grid) return;
 
+    var cards = grid.querySelectorAll('.erc-card');
 
+    function runFilter() {
+        var term = searchInput.value.trim().toLowerCase();
+        var visibleCount = 0;
+
+        cards.forEach(function (card) {
+            var name = card.getAttribute('data-fleet-name') || '';
+            var matches = name.indexOf(term) !== -1;
+            card.style.display = matches ? '' : 'none';
+            if (matches) visibleCount++;
+        });
+
+        noResults.style.display = visibleCount === 0 ? '' : 'none';
+    }
+
+    searchInput.addEventListener('input', runFilter);
+
+    // Pre-fill via ?fleet_search= (e.g. from the navbar search) runs the filter immediately.
+    if (searchInput.value.trim() !== '') {
+        runFilter();
+    }
+});
+</script>
 
  <?php get_footer(); ?>

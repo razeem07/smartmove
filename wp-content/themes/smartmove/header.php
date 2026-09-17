@@ -126,6 +126,115 @@
     .main-menu-two__call-number a:hover {
         color: #ff6600 !important;
     }
+
+    /* Navbar Fleet Search */
+    .main-menu-two__search {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .main-menu-two__search-toggle {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .main-menu-two__search--sticky .main-menu-two__search-toggle {
+        border-color: rgba(0, 0, 0, 0.15);
+        background: rgba(0, 0, 0, 0.04);
+        color: #222;
+    }
+
+    .main-menu-two__search-toggle:hover {
+        background: #ff6600;
+        border-color: #ff6600;
+        color: #fff;
+    }
+
+    /* Drops down below the icon rather than pushing the navbar sideways */
+    .main-menu-two__search-form {
+        position: absolute;
+        top: calc(100% + 14px);
+        right: 0;
+        width: 280px;
+        max-width: 80vw;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        visibility: hidden;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        padding: 0 14px;
+        transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease;
+        z-index: 100;
+    }
+
+    .main-menu-two__search.is-active .main-menu-two__search-form {
+        max-height: 70px;
+        opacity: 1;
+        visibility: visible;
+        padding: 12px 14px;
+    }
+
+    .main-menu-two__search-input {
+        width: 100%;
+        padding: 8px 14px;
+        border-radius: 50px;
+        border: 1px solid #e2e2e2;
+        background: #fff;
+        color: #222;
+        font-size: 13px;
+    }
+
+    .main-menu-two__search-input::placeholder {
+        color: #999;
+    }
+
+    .main-menu-two__search-input:focus {
+        outline: none;
+        border-color: #ff6600;
+    }
+
+    @media (max-width: 1199px) {
+        .main-menu-two__search {
+            display: none;
+        }
+    }
+
+    /* Mobile Nav Search */
+    .mobile-nav__search-form {
+        position: relative;
+        margin: 0 0 20px 0;
+    }
+
+    .mobile-nav__search-icon {
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transform: translateY(-50%);
+        color: #999;
+        font-size: 13px;
+        pointer-events: none;
+    }
+
+    .mobile-nav__search-input {
+        width: 100%;
+        padding: 10px 14px 10px 36px;
+        border-radius: 50px;
+        border: 1px solid #e2e2e2;
+        font-size: 14px;
+    }
   </style>
 
   <?php wp_head(); ?>
@@ -167,6 +276,7 @@
                                 ) );
                                 ?>
                             </div>
+                            <?php smartmove_render_navbar_search( 'main' ); ?>
                             <div class="main-menu-two__right call-badge-card">
                                 <div class="main-menu-two__call">
                                     <div class="main-menu-two__call-icon"><i class="fa fa-phone"></i></div>
@@ -208,6 +318,7 @@
                                 ) );
                             ?>
                         </div>
+                        <?php smartmove_render_navbar_search( 'sticky' ); ?>
                         <div class="main-menu-two__right call-badge-card-sticky">
                             <div class="main-menu-two__call">
                                 <div class="main-menu-two__call-icon"><i class="fa fa-phone"></i></div>
@@ -244,6 +355,11 @@
                 <?php endif; ?>
             </a>
         </div>
+
+        <form class="mobile-nav__search-form" action="<?php echo esc_url( home_url( '/our-fleets/' ) ); ?>" method="get">
+            <i class="fa fa-search mobile-nav__search-icon"></i>
+            <input type="text" name="fleet_search" class="mobile-nav__search-input" placeholder="Search fleets by name or brand...">
+        </form>
 
         <div class="mobile-nav__container">
             <?php
@@ -283,3 +399,33 @@
 
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.main-menu-two__search').forEach(function (wrap) {
+        var toggle = wrap.querySelector('.main-menu-two__search-toggle');
+        var input = wrap.querySelector('.main-menu-two__search-input');
+        if (!toggle || !input) return;
+
+        toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            var isActive = wrap.classList.contains('is-active');
+            document.querySelectorAll('.main-menu-two__search.is-active').forEach(function (openWrap) {
+                openWrap.classList.remove('is-active');
+            });
+            if (!isActive) {
+                wrap.classList.add('is-active');
+                input.focus();
+            }
+        });
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.main-menu-two__search')) {
+            document.querySelectorAll('.main-menu-two__search.is-active').forEach(function (wrap) {
+                wrap.classList.remove('is-active');
+            });
+        }
+    });
+});
+</script>
