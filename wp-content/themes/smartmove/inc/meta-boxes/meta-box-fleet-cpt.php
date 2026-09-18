@@ -31,6 +31,31 @@ function smartmove_render_fleet_metabox( $post ) {
     smartmove_field_text( 'full_day', 'Full Day Rate', get_post_meta( $id, 'full_day', true ) );
 }
 
+function smartmove_add_fleet_faq_metabox() {
+    add_meta_box(
+        'smartmove_fleet_faqs',
+        'Fleet FAQs',
+        'smartmove_render_fleet_faq_metabox',
+        'fleet',
+        'normal',
+        'default'
+    );
+}
+add_action( 'add_meta_boxes', 'smartmove_add_fleet_faq_metabox' );
+
+function smartmove_render_fleet_faq_metabox( $post ) {
+    wp_nonce_field( 'smartmove_save_fleet_faqs', 'smartmove_fleet_faqs_nonce' );
+    smartmove_field_faq_repeater( 'fleet_faqs', get_post_meta( $post->ID, 'fleet_faqs', true ) );
+}
+
+function smartmove_save_fleet_faqs_meta( $post_id ) {
+    if ( ! smartmove_verify_save( $post_id, 'smartmove_fleet_faqs_nonce', 'smartmove_save_fleet_faqs' ) ) {
+        return;
+    }
+    smartmove_save_faq_repeater( $post_id, 'fleet_faqs' );
+}
+add_action( 'save_post_fleet', 'smartmove_save_fleet_faqs_meta' );
+
 function smartmove_save_fleet_meta( $post_id ) {
     if ( ! smartmove_verify_save( $post_id, 'smartmove_fleet_nonce', 'smartmove_save_fleet' ) ) {
         return;

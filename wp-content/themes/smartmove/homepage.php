@@ -458,7 +458,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
                             <p class="erc-price-text fade-right">Contact us for best price</p>
 
                             <div class="erc-actions">
-								<a href="tel:<?php echo get_theme_mod('footer_phone'); ?>" class="erc-btn erc-btn-call">
+								<a href="tel:<?php echo esc_attr( preg_replace('/\D/', '', get_theme_mod('footer_phone')) ); ?>" class="erc-btn erc-btn-call">
 									<i class="bi bi-telephone-fill"></i>
 									Call
 								</a>

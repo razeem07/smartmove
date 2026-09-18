@@ -169,10 +169,12 @@ add_action( 'wp_enqueue_scripts', 'smartmove_enqueue_styles' );
 function include_cpt_in_category_archives( $query ) {
     // Only modify the main query on the frontend category archive pages
     if ( ! is_admin() && $query->is_main_query() && $query->is_category() ) {
-        
+
         // Replace 'your_cpt_name' with your actual Custom Post Type slug
         $query->set( 'post_type', array( 'post', 'fleet' ) );
-        
+        $query->set( 'orderby', 'title' );
+        $query->set( 'order', 'ASC' );
+
     }
 }
 add_action( 'pre_get_posts', 'include_cpt_in_category_archives' );

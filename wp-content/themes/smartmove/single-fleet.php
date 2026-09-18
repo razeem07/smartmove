@@ -110,6 +110,49 @@
 
         </div>
 
+        <?php
+        $smartmove_fleet_faqs = get_post_meta( get_the_ID(), 'fleet_faqs', true );
+        if ( ! empty( $smartmove_fleet_faqs ) ) :
+        ?>
+        <section class="faq-2col-section">
+            <div class="faq-2col-container">
+                <div class="faq-2col-header">
+                    <h2 class="faq-2col-main-title fade-left">Frequently Asked <span class="faq-2col-title-bold">Questions</span></h2>
+                </div>
+                <div class="faq-2col-grid fade-bottom">
+                    <?php foreach ( $smartmove_fleet_faqs as $smartmove_faq ) : ?>
+                        <div class="faq-2col-item">
+                            <div class="faq-2col-trigger faq-item-q" onclick="toggleFaqItem(this)">
+                                <p class="faq-2col-question"><?php echo esc_html( $smartmove_faq['question'] ); ?></p>
+                                <div class="faq-2col-indicator">
+                                    <span class="faq-2col-icon-line"></span>
+                                    <span class="faq-2col-icon-line"></span>
+                                </div>
+                            </div>
+                            <div class="faq-2col-collapse">
+                                <div class="faq-2col-body">
+                                    <p><?php echo nl2br( esc_html( $smartmove_faq['answer'] ) ); ?></p>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </section>
+        <script>
+        function toggleFaqItem(element) {
+            const currentItem = element.parentElement;
+            const isExpanded = currentItem.classList.contains('is-expanded');
+            document.querySelectorAll('.faq-2col-item').forEach(item => {
+                item.classList.remove('is-expanded');
+            });
+            if (!isExpanded) {
+                currentItem.classList.add('is-expanded');
+            }
+        }
+        </script>
+        <?php endif; ?>
+
     </div>
 </main>
 

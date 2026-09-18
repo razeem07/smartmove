@@ -93,6 +93,63 @@ function smartmove_subsection_close() {
 }
 
 /**
+ * Repeatable FAQ list (question/answer pairs) with add/remove rows via JS.
+ * Stored as a single postmeta array: [ ['question'=>..., 'answer'=>...], ... ].
+ */
+function smartmove_render_faq_row( $meta_key, $question, $answer ) {
+    ?>
+    <div class="smartmove-faq-row">
+        <p class="smartmove-mb-field">
+            <label><strong>Question</strong></label><br>
+            <input type="text" class="widefat" name="<?php echo esc_attr( $meta_key ); ?>_question[]" value="<?php echo esc_attr( $question ); ?>" placeholder="e.g. Is insurance included?">
+        </p>
+        <p class="smartmove-mb-field">
+            <label><strong>Answer</strong></label><br>
+            <textarea class="widefat" rows="3" name="<?php echo esc_attr( $meta_key ); ?>_answer[]" placeholder="Answer"><?php echo esc_textarea( $answer ); ?></textarea>
+        </p>
+        <button type="button" class="button smartmove-faq-remove">Remove FAQ</button>
+        <hr>
+    </div>
+    <?php
+}
+
+function smartmove_field_faq_repeater( $meta_key, $faqs ) {
+    if ( ! is_array( $faqs ) ) {
+        $faqs = array();
+    }
+    ?>
+    <div class="smartmove-faq-repeater" data-meta-key="<?php echo esc_attr( $meta_key ); ?>">
+        <div class="smartmove-faq-rows">
+            <?php foreach ( $faqs as $faq ) : ?>
+                <?php smartmove_render_faq_row( $meta_key, isset( $faq['question'] ) ? $faq['question'] : '', isset( $faq['answer'] ) ? $faq['answer'] : '' ); ?>
+            <?php endforeach; ?>
+        </div>
+        <button type="button" class="button button-primary smartmove-faq-add">+ Add FAQ</button>
+        <script type="text/template" class="smartmove-faq-row-template">
+            <?php smartmove_render_faq_row( $meta_key, '', '' ); ?>
+        </script>
+    </div>
+    <?php
+}
+
+function smartmove_save_faq_repeater( $post_id, $meta_key ) {
+    $questions = isset( $_POST[ $meta_key . '_question' ] ) ? (array) $_POST[ $meta_key . '_question' ] : array();
+    $answers   = isset( $_POST[ $meta_key . '_answer' ] ) ? (array) $_POST[ $meta_key . '_answer' ] : array();
+
+    $faqs = array();
+    foreach ( $questions as $i => $question ) {
+        $question = sanitize_text_field( wp_unslash( $question ) );
+        $answer   = isset( $answers[ $i ] ) ? sanitize_textarea_field( wp_unslash( $answers[ $i ] ) ) : '';
+        if ( '' === $question && '' === $answer ) {
+            continue;
+        }
+        $faqs[] = array( 'question' => $question, 'answer' => $answer );
+    }
+
+    update_post_meta( $post_id, $meta_key, $faqs );
+}
+
+/**
  * Only load wp.media + the meta box JS/CSS on the edit screens that
  * actually need them, not admin-wide.
  */
@@ -107,7 +164,7 @@ function smartmove_maybe_enqueue_metabox_assets( $hook ) {
     }
 
     $pages_with_metaboxes = array( 7, 178, 257, 276, 407 );
-    $post_types_with_metaboxes = array( 'fleet', 'member' );
+    $post_types_with_metaboxes = array( 'fleet', 'member', 'service' );
 
     $applies = ( 'page' === $post->post_type && in_array( $post->ID, $pages_with_metaboxes, true ) )
         || in_array( $post->post_type, $post_types_with_metaboxes, true );
@@ -119,6 +176,10 @@ function smartmove_maybe_enqueue_metabox_assets( $hook ) {
     wp_enqueue_media();
     wp_enqueue_style( 'smartmove-admin-meta-boxes', get_template_directory_uri() . '/assets/css/admin-meta-boxes.css', array(), '1.0' );
     wp_enqueue_script( 'smartmove-admin-meta-boxes', get_template_directory_uri() . '/assets/js/admin-meta-boxes.js', array( 'jquery' ), '1.0', true );
+
+    if ( in_array( $post->post_type, array( 'fleet', 'service' ), true ) ) {
+        wp_enqueue_script( 'smartmove-faq-repeater-admin', get_template_directory_uri() . '/assets/js/faq-repeater-admin.js', array( 'jquery' ), '1.0', true );
+    }
 }
 add_action( 'admin_enqueue_scripts', 'smartmove_maybe_enqueue_metabox_assets' );
 
@@ -142,3 +203,4 @@ require __DIR__ . '/meta-box-servicespage.php';
 require __DIR__ . '/meta-box-contactpage.php';
 require __DIR__ . '/meta-box-fleet-cpt.php';
 require __DIR__ . '/meta-box-member-cpt.php';
+require __DIR__ . '/meta-box-service-cpt.php';
