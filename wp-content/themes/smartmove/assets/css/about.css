@@ -70,7 +70,7 @@
 /* About Page */
 .about-banner-compact {
     position: relative;
-    height: 550px; /* Much shorter than home banner */
+    min-height: 550px; /* Much shorter than home banner; grows if the text needs more room */
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -554,4 +554,22 @@
     color: #888888;
     font-weight: 600;
     text-align: center;
+}
+
+/* Multi-paragraph copy blocks on the About page */
+.about-copy p {
+    margin: 0 0 16px;
+}
+
+.about-copy p:last-child {
+    margin-bottom: 0;
+}
+
+/* About page banner: longer H1 and two paragraphs */
+.about-banner-compact--long {
+    padding-bottom: 70px;
+}
+
+.about-banner-compact--long .compact-title {
+    font-size: clamp(2rem, 3.4vw, 3.1rem) !important;
 }

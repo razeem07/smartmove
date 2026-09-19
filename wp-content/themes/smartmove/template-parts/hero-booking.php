@@ -23,7 +23,7 @@ if ($home_page) :
             <div class="hero-overlay"></div>
             <div class="container hero-content" data-aos="fade-up">
                 <h2 class="hero-title"><?php echo esc_html($hero['Hero_Footer_Title']); ?></h2>
-                <a href="https://wa.me/971502584311" class="btn hero-btn mt-4" target="_blank">Book Now →</a>
+                <a href="https://wa.me/<?php echo esc_attr( preg_replace( '/\D+/', '', get_theme_mod( 'footer_whatsapp' ) ) ); ?>" class="btn hero-btn mt-4" target="_blank" rel="noopener">Book Now →</a>
             </div>
         </section>
     

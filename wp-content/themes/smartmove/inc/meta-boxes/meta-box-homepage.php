@@ -47,7 +47,8 @@ function smartmove_render_homepage_metabox( $post ) {
         smartmove_field_text( 'aboutus_section_main_title', 'Main Title', get_post_meta( $id, 'aboutus_section_main_title', true ) );
         smartmove_field_image( 'aboutus_section_image', 'Image', get_post_meta( $id, 'aboutus_section_image', true ) );
         smartmove_field_text( 'aboutus_section_title', 'Title', get_post_meta( $id, 'aboutus_section_title', true ) );
-        smartmove_field_textarea( 'aboutus_section_content', 'Content', get_post_meta( $id, 'aboutus_section_content', true ) );
+        smartmove_field_textarea( 'aboutus_section_content', 'Content', get_post_meta( $id, 'aboutus_section_content', true ), 8 );
+        smartmove_field_text( 'aboutus_section_cards_heading', 'Cards Heading (above the 4 cards)', get_post_meta( $id, 'aboutus_section_cards_heading', true ) );
         for ( $i = 1; $i <= 4; $i++ ) {
             smartmove_subsection_open( "Card {$i}" );
                 smartmove_field_text( "aboutus_section_cards_card_{$i}_title", 'Title', get_post_meta( $id, "aboutus_section_cards_card_{$i}_title", true ) );
@@ -96,6 +97,7 @@ function smartmove_save_homepage_meta( $post_id ) {
 
     $text_fields[]     = 'aboutus_section_main_title';
     $text_fields[]     = 'aboutus_section_title';
+    $text_fields[]     = 'aboutus_section_cards_heading';
     $textarea_fields[] = 'aboutus_section_content';
     $image_fields[]    = 'aboutus_section_image';
     for ( $i = 1; $i <= 4; $i++ ) {

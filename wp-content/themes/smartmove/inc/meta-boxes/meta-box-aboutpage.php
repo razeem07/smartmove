@@ -62,6 +62,16 @@ function smartmove_render_aboutpage_metabox( $post ) {
         }
     smartmove_section_close();
 
+    smartmove_section_open( 'Our Leadership' );
+        smartmove_field_text( 'leadership_title', 'Heading', get_post_meta( $id, 'leadership_title', true ) );
+        smartmove_field_textarea( 'leadership_intro', 'Intro Paragraphs (leave a blank line between paragraphs)', get_post_meta( $id, 'leadership_intro', true ), 6 );
+    smartmove_section_close();
+
+    smartmove_section_open( 'Our Ventures' );
+        smartmove_field_text( 'ventures_title', 'Heading', get_post_meta( $id, 'ventures_title', true ) );
+        smartmove_field_textarea( 'ventures_intro', 'Intro Paragraphs (leave a blank line between paragraphs)', get_post_meta( $id, 'ventures_intro', true ), 6 );
+    smartmove_section_close();
+
     smartmove_section_open( 'Our Premium Features' );
         smartmove_field_text( 'our_premium_features_title', 'Title', get_post_meta( $id, 'our_premium_features_title', true ) );
         for ( $i = 1; $i <= 3; $i++ ) {
@@ -77,6 +87,7 @@ function smartmove_render_aboutpage_metabox( $post ) {
         smartmove_field_image( 'mission_vision_banner_image', 'Banner Image', get_post_meta( $id, 'mission_vision_banner_image', true ) );
         smartmove_field_text( 'mission_vision_start_year', 'Start Year', get_post_meta( $id, 'mission_vision_start_year', true ) );
         smartmove_field_text( 'mission_vision_title', 'Title', get_post_meta( $id, 'mission_vision_title', true ) );
+        smartmove_field_textarea( 'mission_vision_intro', 'Intro Paragraph (under the title)', get_post_meta( $id, 'mission_vision_intro', true ) );
         smartmove_field_textarea( 'mission_vision_mission', 'Mission', get_post_meta( $id, 'mission_vision_mission', true ) );
         smartmove_field_textarea( 'mission_vision_vision', 'Vision', get_post_meta( $id, 'mission_vision_vision', true ) );
     smartmove_section_close();
@@ -90,8 +101,8 @@ function smartmove_save_aboutpage_meta( $post_id ) {
         return;
     }
 
-    $text_fields = array( 'banner_small_title', 'banner_title', 'about_us_title', 'our_premium_features_title', 'mission_vision_start_year', 'mission_vision_title' );
-    $textarea_fields = array( 'banner_content', 'about_us_content', 'mission_vision_mission', 'mission_vision_vision' );
+    $text_fields = array( 'banner_small_title', 'banner_title', 'about_us_title', 'our_premium_features_title', 'mission_vision_start_year', 'mission_vision_title', 'leadership_title', 'ventures_title' );
+    $textarea_fields = array( 'banner_content', 'about_us_content', 'mission_vision_mission', 'mission_vision_vision', 'mission_vision_intro', 'leadership_intro', 'ventures_intro' );
     $icon_fields = array();
     $image_fields = array( 'banner_image', 'services_banner_image', 'mission_vision_banner_image' );
 

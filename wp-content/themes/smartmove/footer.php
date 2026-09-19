@@ -51,32 +51,24 @@
                                                 <p>Whatsapp Number</p>
                                             </div>
                                             <p class="footer-widget__contact-text">
-                                                <a href="tel:<?php echo esc_attr($phone_link); ?>"><?php echo esc_html($phone); ?></a>
+                                                <a href="https://wa.me/<?php echo esc_attr($phone_link); ?>" target="_blank" rel="noopener"><?php echo esc_html($phone); ?></a>
                                             </p>
                                         </li>
                                         <?php endif; ?>
 
-                                        <?php if ( get_theme_mod('footer_email') ) : ?>
+                                        <?php
+                                        $footer_emails = array_filter( array( get_theme_mod( 'footer_email' ), get_theme_mod( 'footer_email_2' ) ) );
+                                        if ( $footer_emails ) : ?>
                                         <li>
                                             <div class="footer-widget__contact-icon-box">
                                                 <span class="icon-mail"></span>
                                                 <p>Email</p>
                                             </div>
+                                            <?php foreach ( $footer_emails as $footer_email ) : ?>
                                             <p class="footer-widget__contact-text">
-                                                <a href="mailto:<?php echo antispambot(get_theme_mod('footer_email')); ?>"><?php echo esc_html(get_theme_mod('footer_email')); ?></a>
+                                                <a href="mailto:<?php echo antispambot( $footer_email ); ?>"><?php echo esc_html( $footer_email ); ?></a>
                                             </p>
-                                        </li>
-                                        <?php endif; ?>
-
-                                        <?php if ( get_theme_mod('footer_email_2') ) : ?>
-                                        <li>
-                                            <div class="footer-widget__contact-icon-box">
-                                                <span class="icon-mail"></span>
-                                                <p>Email</p>
-                                            </div>
-                                            <p class="footer-widget__contact-text">
-                                                <a href="mailto:<?php echo antispambot(get_theme_mod('footer_email_2')); ?>"><?php echo esc_html(get_theme_mod('footer_email_2')); ?></a>
-                                            </p>
+                                            <?php endforeach; ?>
                                         </li>
                                         <?php endif; ?>
                                     </ul>
@@ -104,7 +96,7 @@
                         <!-- COLUMN 3: SOCIAL MEDIA -->
                         <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp animated" data-wow-delay="400ms">
                             <div class="footer-widget__social-box">
-                                <h4 class="footer-widget__title">Social Media</h4>
+                                <h4 class="footer-widget__title">Smart Move Dubai</h4>
                                 <?php if ( get_theme_mod('footer_description') ) : ?>
                                     <p class="footer-widget__social-text"><?php echo esc_html( get_theme_mod('footer_description') ); ?></p>
                                 <?php endif; ?>
@@ -161,10 +153,13 @@
     </div>
 </footer>
 
-<?php if ( get_theme_mod('bleizure_whatsapp_number') ) : 
-    $wa_num = preg_replace('/\D+/', '', get_theme_mod('bleizure_whatsapp_number')); ?>
-    <a href="https://wa.me/<?php echo esc_attr($wa_num); ?>" class="whatsapp-float" target="_blank" rel="noopener">
-        <i class="bi bi-whatsapp"></i>
+<?php
+$wa_digits = preg_replace( '/\D+/', '', get_theme_mod( 'footer_whatsapp' ) );
+if ( $wa_digits ) :
+    $wa_text = rawurlencode( 'Hello Smart Move, I would like to enquire about a car rental.' );
+?>
+    <a href="https://wa.me/<?php echo esc_attr( $wa_digits ); ?>?text=<?php echo esc_attr( $wa_text ); ?>" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+        <i class="bi bi-whatsapp" aria-hidden="true"></i>
     </a>
 <?php endif; ?>
 

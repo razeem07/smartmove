@@ -38,10 +38,11 @@ for ( $i = 1; $i <= 3; $i++ ) {
                 <div class="item" style="background-image: url('<?php echo esc_url($hero_banner['banner_1']['image']); ?>');">
                     <div class="container">
                         <div class="main-slider-two__content">
-                            <h2 class="main-slider-two__title fade-left"><?php echo esc_html($hero_banner['banner_1']['title']); ?></h2>
+                            <h1 class="main-slider-two__title fade-left"><?php echo esc_html($hero_banner['banner_1']['title']); ?></h1>
                             <p class="main-slider-two__text fade-right"><?php echo esc_html($hero_banner['banner_1']['description']); ?></p>
                             <div class="main-slider-two__btn">
                                 <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="thm-btn">Get Started<span class="icon-arrow-up-right"></span></a>
+                                <a href="<?php echo esc_url( home_url( '/our-fleets/' ) ); ?>" class="thm-btn thm-btn--outline">Explore Our Fleet</a>
                             </div>
                         </div>
                     </div>
@@ -57,6 +58,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
                             <p class="main-slider-two__text fade-right"><?php echo esc_html($hero_banner['banner_2']['description']); ?></p>
                             <div class="main-slider-two__btn">
                                 <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="thm-btn">Get Started<span class="icon-arrow-up-right"></span></a>
+                                <a href="<?php echo esc_url( home_url( '/our-fleets/' ) ); ?>" class="thm-btn thm-btn--outline">Explore Our Fleet</a>
                             </div>
                         </div>
                     </div>
@@ -72,6 +74,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
                             <p class="main-slider-two__text fade-right"><?php echo esc_html($hero_banner['banner_3']['description']); ?></p>
                             <div class="main-slider-two__btn">
                                 <a href="<?php echo esc_url( home_url( '/contact' ) ); ?>" class="thm-btn">Get Started<span class="icon-arrow-up-right"></span></a>
+                                <a href="<?php echo esc_url( home_url( '/our-fleets/' ) ); ?>" class="thm-btn thm-btn--outline">Explore Our Fleet</a>
                             </div>
                         </div>
                     </div>
@@ -210,6 +213,29 @@ for ( $i = 1; $i <= 3; $i++ ) {
 .main-slider-two__btn .thm-btn {
     margin-left: 0 !important;
     margin-right: auto !important;
+}
+
+.main-slider-two__btn {
+    gap: 14px !important;
+    flex-wrap: wrap !important;
+}
+
+.main-slider-two__btn .thm-btn.thm-btn--outline {
+    background: transparent !important;
+    border: 2px solid #ffffff !important;
+    color: #ffffff !important;
+}
+
+.home-copy p {
+    margin: 0 0 16px;
+}
+
+.home-copy p:last-child {
+    margin-bottom: 0;
+}
+
+.main-slider-two__btn .thm-btn.thm-btn--outline:hover {
+    color: #171717 !important;
 }
 
 /* -------------------------------------------------------------
@@ -369,14 +395,21 @@ for ( $i = 1; $i <= 3; $i++ ) {
                 <!-- Text Side -->
                 <div class="col-xl-7 col-lg-6">
                     <div class="about-two__text-box">
-                        <h3 class="about-two__content-title text-dark fade-left"><?php echo get_post_meta( get_the_ID(), 'aboutus_section_title', true ); ?></h3>
-                        <p class="about-two__content-text text-dark-50 fade-right"><?php echo get_post_meta( get_the_ID(), 'aboutus_section_content', true ); ?></p>
+                        <?php $about_sub_title = get_post_meta( get_the_ID(), 'aboutus_section_title', true ); ?>
+                        <?php if ( $about_sub_title ) : ?>
+                        <h3 class="about-two__content-title text-dark fade-left"><?php echo esc_html( $about_sub_title ); ?></h3>
+                        <?php endif; ?>
+                        <div class="home-copy about-two__content-text text-dark-50 fade-right"><?php echo wpautop( esc_html( get_post_meta( get_the_ID(), 'aboutus_section_content', true ) ) ); ?></div>
                     </div>
                 </div>
             </div>
 
             <!-- Cards Grid -->
             <div class="about-two__cards-grid mt-50">
+                <?php $about_cards_heading = get_post_meta( get_the_ID(), 'aboutus_section_cards_heading', true ); ?>
+                <?php if ( $about_cards_heading ) : ?>
+                <h2 class="section-title__title text-dark fade-left mb-4"><?php echo esc_html( $about_cards_heading ); ?></h2>
+                <?php endif; ?>
                 <div class="row">
                     <?php
                     $cards = array();
@@ -417,8 +450,8 @@ for ( $i = 1; $i <= 3; $i++ ) {
     <div class="erc-container">
         
         <div class="erc-header">
-            <h2 class="section-title__title text-dark fade-left">Exotic Car Rental</h2>
-            <p class="erc-subtitle fade-right">Discover Exotic Car Rental cars</p>
+            <h2 class="section-title__title text-dark fade-left">Exotic Car Rental in Dubai</h2>
+            <p class="erc-subtitle fade-right">Make every journey memorable with our collection of luxury and exotic rental cars in Dubai. Whether you want a stylish sports car for a special occasion or a premium vehicle for your Dubai experience, explore our fleet and find the car that matches your style.</p>
         </div>
 
         <div class="erc-grid">
@@ -477,7 +510,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
 
         <div class="erc-footer">
             <a href="<?php echo esc_url( home_url( '/our-fleets' ) ); ?>" class="erc-view-all">
-                View all 
+                View All Luxury &amp; Exotic Cars 
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/></svg>
             </a>
         </div>
@@ -533,9 +566,7 @@ for ( $i = 1; $i <= 3; $i++ ) {
                             <span class="section-title__tagline fade-left">Exclusive Rental</span>
                         </div>
                         <h2 class="section-title__title text-white fade-right"><?php echo get_post_meta( get_the_ID(), 'exclusive_rental_section_main_title', true ); ?></h2>
-                        <p class="text-white-50 mt-4 fade-left">
-						<?php echo get_post_meta( get_the_ID(), 'exclusive_rental_section_content', true ); ?>
-						</p>
+                        <div class="home-copy text-white-50 mt-4 fade-left"><?php echo wpautop( esc_html( get_post_meta( get_the_ID(), 'exclusive_rental_section_content', true ) ) ); ?></div>
                         <div class="mt-5 main-slider-two__btn">
                             <a href="<?php echo esc_url( get_post_meta( get_the_ID(), 'exclusive_rental_section_book_link', true ) ); ?>" class="thm-btn">Book Your Experience</a>
                         </div>
@@ -598,7 +629,8 @@ if ($services_query->have_posts()) : ?>
     <section class="src-carousel-section">
         <div class="src-container">
 			<div class="erc-header">
-            	<h2 class="section-title__title text-dark fade-left">Services</h2>
+            	<h2 class="section-title__title text-dark fade-left">Our Car Rental Services</h2>
+				<p class="erc-subtitle fade-right">Whether you need a vehicle for a few days, several weeks, or an extended period, Smart Move Dubai offers flexible car rental services designed for different travel and business requirements.</p>
         	</div>
             <div class="swiper src-swiper">
                 <div class="swiper-wrapper">
@@ -659,7 +691,8 @@ if ($services_query->have_posts()) : ?>
             <div class="section-title__tagline-box">
                 <span class="section-title__tagline fade-bottom">Latest News</span>
             </div>
-            <h2 class="section-title__title text-dark fade-left">Insights from the <br> Logistics World</h2>
+            <h2 class="section-title__title text-dark fade-left">Dubai Car Rental Insights &amp; Travel Guide</h2>
+            <p class="fade-bottom" style="max-width: 760px; margin: 15px auto 0;">Explore useful car rental tips, Dubai travel guides, driving information, vehicle insights, and practical advice to help you make the most of your time in the UAE.</p>
         </div>
         
         <div class="row">
@@ -726,10 +759,10 @@ $testimonials_query = new WP_Query($args);
             <div class="col-lg-5">
                 <div class="section-title">
                     <div class="section-title__tagline-box">
-                        <span class="section-title__tagline fade-bottom">What Our Clients Say</span>
+                        <span class="section-title__tagline fade-bottom">What Our Customers Say</span>
                     </div>
-                    <h2 class="section-title__title fade-left" style="color: white;">Testimonials</h2>
-                    <p class="mt-3 fade-right" style="color: rgba(255,255,255,0.7);">Reviews from our clients across the globe.</p>
+                    <h2 class="section-title__title fade-left" style="color: white;">Customer Reviews</h2>
+                    <p class="mt-3 fade-right" style="color: rgba(255,255,255,0.7);">Our customers choose Smart Move Dubai for convenient bookings, quality vehicles, flexible rental options, and professional service.</p>
                 </div>
             </div>
 
@@ -842,7 +875,7 @@ if ($partner_query->have_posts()) : ?>
             
             <!-- Section Header -->
             <div class="pmq-header">
-                <h2 class="pmq-title">Our Brands</h2>
+                <h2 class="pmq-title">Premium &amp; Luxury Car Brands Available in Dubai</h2>
             </div>
 
             <!-- Marquee Track Wrapper -->

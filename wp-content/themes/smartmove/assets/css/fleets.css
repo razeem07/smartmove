@@ -253,6 +253,10 @@
 }
 
 .erc-header {
+    margin-bottom: 30px;
+}
+
+.erc-header-row .erc-header {
     margin-bottom: 0;
 }
 
@@ -265,8 +269,9 @@
 
 .erc-subtitle {
     font-size: 16px;
+    line-height: 1.6;
     color: #444444;
-    margin: 0;
+    margin: 8px 0 0;
 }
 
 /* Fleet Search Bar */

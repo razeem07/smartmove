@@ -29,6 +29,37 @@ function smartmove_render_navbar_search( $variant = 'default' ) {
 }
 
 
+/**
+ * Optional site-wide noindex, nofollow, controlled by the
+ * Customizer > Search Engine Visibility checkbox (off by default).
+ */
+function smartmove_hide_from_search_engines() {
+    return (bool) get_theme_mod( 'hide_from_search_engines', false );
+}
+
+function smartmove_wp_robots_noindex( $robots ) {
+    if ( smartmove_hide_from_search_engines() ) {
+        $robots['noindex']  = true;
+        $robots['nofollow'] = true;
+    }
+    return $robots;
+}
+add_filter( 'wp_robots', 'smartmove_wp_robots_noindex', 99 );
+
+function smartmove_yoast_robots_noindex( $robots ) {
+    return smartmove_hide_from_search_engines() ? 'noindex, nofollow' : $robots;
+}
+add_filter( 'wpseo_robots', 'smartmove_yoast_robots_noindex', 99 );
+
+/**
+ * Use the file's modification time as the asset version, so browsers
+ * fetch a fresh copy whenever a stylesheet changes.
+ */
+function smartmove_asset_version( $relative_path ) {
+    $file = get_template_directory() . $relative_path;
+    return file_exists( $file ) ? filemtime( $file ) : null;
+}
+
 // Load Bootstrap + Theme CSS
 function mytheme_enqueue_styles() {
     // Bootstrap
@@ -53,18 +84,18 @@ function mytheme_enqueue_styles() {
     wp_enqueue_script('aos-js','https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js',array(),'2.3.4',true);
 
     // Desktop CSS (default)
-    wp_enqueue_style('desktop-css', get_template_directory_uri() . '/assets/css/main.css');
-	wp_enqueue_style('desktop-css-about', get_template_directory_uri() . '/assets/css/about.css');
-	wp_enqueue_style('desktop-css-count', get_template_directory_uri() . '/assets/css/counter.css');
-	wp_enqueue_style('desktop-css-footer', get_template_directory_uri() . '/assets/css/footer.css');
-	wp_enqueue_style('desktop-css-fleets', get_template_directory_uri() . '/assets/css/fleets.css');
-	wp_enqueue_style('desktop-css-testimonials', get_template_directory_uri() . '/assets/css/testimonials.css');
-	wp_enqueue_style('desktop-css-faq', get_template_directory_uri() . '/assets/css/faq.css');
-	wp_enqueue_style('desktop-css-blogs', get_template_directory_uri() . '/assets/css/blogs.css');
-	wp_enqueue_style('desktop-css-single-service', get_template_directory_uri() . '/assets/css/single-service.css');
+    wp_enqueue_style('desktop-css', get_template_directory_uri() . '/assets/css/main.css', array(), smartmove_asset_version('/assets/css/main.css'));
+	wp_enqueue_style('desktop-css-about', get_template_directory_uri() . '/assets/css/about.css', array(), smartmove_asset_version('/assets/css/about.css'));
+	wp_enqueue_style('desktop-css-count', get_template_directory_uri() . '/assets/css/counter.css', array(), smartmove_asset_version('/assets/css/counter.css'));
+	wp_enqueue_style('desktop-css-footer', get_template_directory_uri() . '/assets/css/footer.css', array(), smartmove_asset_version('/assets/css/footer.css'));
+	wp_enqueue_style('desktop-css-fleets', get_template_directory_uri() . '/assets/css/fleets.css', array(), smartmove_asset_version('/assets/css/fleets.css'));
+	wp_enqueue_style('desktop-css-testimonials', get_template_directory_uri() . '/assets/css/testimonials.css', array(), smartmove_asset_version('/assets/css/testimonials.css'));
+	wp_enqueue_style('desktop-css-faq', get_template_directory_uri() . '/assets/css/faq.css', array(), smartmove_asset_version('/assets/css/faq.css'));
+	wp_enqueue_style('desktop-css-blogs', get_template_directory_uri() . '/assets/css/blogs.css', array(), smartmove_asset_version('/assets/css/blogs.css'));
+	wp_enqueue_style('desktop-css-single-service', get_template_directory_uri() . '/assets/css/single-service.css', array(), smartmove_asset_version('/assets/css/single-service.css'));
 	
     // Theme style.css (required by WordPress, can be empty or minimal)
-    wp_enqueue_style('theme-style', get_stylesheet_uri());
+    wp_enqueue_style('theme-style', get_stylesheet_uri(), array(), smartmove_asset_version('/style.css'));
 
    
      // Custom JS (your own scripts)

@@ -28,6 +28,22 @@ add_action( 'customize_register', 'mytheme_customize_register' );
 
 function mytheme_footer_customize_register( $wp_customize ) {
 
+    // === Search Engine Visibility ===
+    $wp_customize->add_section( 'smartmove_seo_visibility', array(
+        'title'       => __( 'Search Engine Visibility', 'mytheme' ),
+        'description' => __( 'Tick this on staging/test copies only. On the live site it removes every page from Google.', 'mytheme' ),
+        'priority'    => 45,
+    ) );
+    $wp_customize->add_setting( 'hide_from_search_engines', array(
+        'default'           => false,
+        'sanitize_callback' => 'rest_sanitize_boolean',
+    ) );
+    $wp_customize->add_control( 'hide_from_search_engines', array(
+        'label'   => __( 'Hide site from search engines (noindex, nofollow)', 'mytheme' ),
+        'section' => 'smartmove_seo_visibility',
+        'type'    => 'checkbox',
+    ) );
+
     // === Footer Section ===
     $wp_customize->add_section( 'footer_settings', array(
         'title'    => __( 'Footer Settings', 'mytheme' ),
@@ -139,31 +155,6 @@ function mytheme_footer_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'mytheme_footer_customize_register' );
 
-
-function bleizure_whatsapp_register( $wp_customize ) {
-    // Section
-    $wp_customize->add_section('bleizure_whatsapp_section', array(
-        'title'       => __('WhatsApp Settings', 'bleizure'),
-        'description' => __('Manage WhatsApp floating button', 'bleizure'),
-        'priority'    => 160,
-    ));
-
-    // Setting: WhatsApp Number
-    $wp_customize->add_setting('bleizure_whatsapp_number', array(
-        'default'   => '971XXXXXXXXX',
-        'transport' => 'refresh',
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-
-    // Control: WhatsApp Number
-    $wp_customize->add_control('bleizure_whatsapp_number_control', array(
-        'label'    => __('WhatsApp Number (with country code)', 'bleizure'),
-        'section'  => 'bleizure_whatsapp_section',
-        'settings' => 'bleizure_whatsapp_number',
-        'type'     => 'text',
-    ));
-}
-add_action('customize_register', 'bleizure_whatsapp_register');
 
 
 

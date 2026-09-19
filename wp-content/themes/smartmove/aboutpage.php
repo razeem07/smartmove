@@ -4,7 +4,7 @@
 
 <?php get_header(); ?>
 <!-- Banner -->
-<?php get_template_part( 'template-parts/banner-common' ); ?>
+<?php get_template_part( 'template-parts/banner-common', null, array( 'heading_tag' => 'h1', 'class' => 'about-banner-compact--long' ) ); ?>
 
 <!-- About Details Section -->
 <section id="about-content" class="about-two--dark">
@@ -17,9 +17,9 @@
                     </div>
                     <h2 class="section-title__title fade-left" style="color: black;"><?php echo get_post_meta( get_the_ID(), 'about_us_title', true ); ?></h2>
                 </div>
-                <p class="text-dark-50 mb-30 fade-right">
-                    <?php echo get_post_meta( get_the_ID(), 'about_us_content', true ); ?>
-                </p>
+                <div class="about-copy text-dark-50 mb-30 fade-right">
+                    <?php echo wpautop( esc_html( get_post_meta( get_the_ID(), 'about_us_content', true ) ) ); ?>
+                </div>
             </div>
             
             <div class="col-lg-6">
@@ -28,7 +28,7 @@
                     <div class="col-md-6">
                         <div class="about-two__feature-card">
                             <div class="about-two__card-divider"></div>
-                            <h4 class="about-two__card-title text-white  fade-left"><?php echo get_post_meta( get_the_ID(), 'about_us_card_1_title', true ); ?></h4>
+                            <h3 class="about-two__card-title text-white  fade-left"><?php echo get_post_meta( get_the_ID(), 'about_us_card_1_title', true ); ?></h3>
                             <p class="about-two__card-text text-white-50  fade-right">
 							<?php echo get_post_meta( get_the_ID(), 'about_us_card_1_content', true ); ?>
 							</p>
@@ -39,7 +39,7 @@
                     <div class="col-md-6">
                         <div class="about-two__feature-card">
                             <div class="about-two__card-divider"></div>
-                            <h4 class="about-two__card-title text-white  fade-left"><?php echo get_post_meta( get_the_ID(), 'about_us_card_2_title', true ); ?></h4>
+                            <h3 class="about-two__card-title text-white  fade-left"><?php echo get_post_meta( get_the_ID(), 'about_us_card_2_title', true ); ?></h3>
                             <p class="about-two__card-text text-white-50 fade-right">
 							<?php echo get_post_meta( get_the_ID(), 'about_us_card_2_content', true ); ?>
 							</p>
@@ -78,7 +78,7 @@ $container_style = "position: relative; z-index: 2; width: 100%;";
 $item_style    = "display: flex; align-items: flex-start; margin-bottom: 40px;";
 $icon_box_style = "background-color: var(--smartmove-color-theme-blue2, #c5a059); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 20px;";
 $icon_i_style  = "font-size: 35px; color: white;";
-$h4_style      = "font-weight: 700; margin-top: 0; margin-bottom: 10px; color: #ffffff; text-transform: capitalize;";
+$h4_style      = "font-size: 24px; line-height: 1.2; font-weight: 700; margin-top: 0; margin-bottom: 10px; color: #ffffff; text-transform: capitalize;";
 $p_style       = "color: rgba(255, 255, 255, 0.7); font-size: 16px; line-height: 1.6; margin: 0;";
 ?>
 
@@ -107,9 +107,9 @@ $p_style       = "color: rgba(255, 255, 255, 0.7); font-size: 16px; line-height:
                             
                             <!-- Content Box -->
                             <div class="feature-content">
-                                <h4 style="<?php echo $h4_style; ?>" class=" fade-left">
+                                <h3 style="<?php echo $h4_style; ?>" class=" fade-left">
                                     <?php echo esc_html($card['title']); ?>
-                                </h4>
+                                </h3>
                                 <p style="<?php echo $p_style; ?>" class=" fade-right">
                                     <?php echo esc_html($card['content']); ?>
                                 </p>
@@ -138,9 +138,19 @@ $member_query = new WP_Query($args);
 if ($member_query->have_posts()) : ?>
     <section class="leadership-section">
         <div class="container">
+            <?php
+            $leadership_title = get_post_meta( get_queried_object_id(), 'leadership_title', true );
+            $leadership_intro = get_post_meta( get_queried_object_id(), 'leadership_intro', true );
+            if ( '' === $leadership_title ) { $leadership_title = 'Our Leadership'; }
+            ?>
             <div class="section-title text-center">
-                <h2 class="section-title__title fade-left" style="color: black;">Our Leadership</h2>
+                <h2 class="section-title__title fade-left" style="color: black;"><?php echo esc_html( $leadership_title ); ?></h2>
             </div>
+            <?php if ( $leadership_intro ) : ?>
+            <div class="about-copy text-center mx-auto mb-5 fade-bottom" style="max-width: 760px;">
+                <?php echo wpautop( esc_html( $leadership_intro ) ); ?>
+            </div>
+            <?php endif; ?>
             
             <div class="row justify-content-center">
                 <?php while ($member_query->have_posts()) : $member_query->the_post(); 
@@ -157,7 +167,7 @@ if ($member_query->have_posts()) : ?>
                                 <?php endif; ?>
                             </div>
                             <div class="member-info">
-                                <h4 class="member-name  fade-right"><?php the_title(); ?></h4>
+                                <h3 class="member-name  fade-right"><?php the_title(); ?></h3>
                                 <?php if ($designation) : ?>
                                     <p class="member-designation fade-left"><?php echo esc_html($designation); ?></p>
                                 <?php endif; ?>
@@ -186,8 +196,18 @@ if ($partner_query->have_posts()) : ?>
     <section class="prt-partners-section">
         <div class="prt-container">
             
+            <?php
+            $ventures_title = get_post_meta( get_queried_object_id(), 'ventures_title', true );
+            $ventures_intro = get_post_meta( get_queried_object_id(), 'ventures_intro', true );
+            if ( '' === $ventures_title ) { $ventures_title = 'Our Ventures'; }
+            ?>
             <div class="prt-header">
-                <h2 class="prt-title fade-left">Our Ventures</h2>
+                <h2 class="prt-title fade-left"><?php echo esc_html( $ventures_title ); ?></h2>
+                <?php if ( $ventures_intro ) : ?>
+                <div class="about-copy mx-auto fade-bottom" style="max-width: 760px; margin-top: 12px;">
+                    <?php echo wpautop( esc_html( $ventures_intro ) ); ?>
+                </div>
+                <?php endif; ?>
             </div>
 
             <div class="prt-grid">
@@ -280,6 +300,10 @@ if ($partner_query->have_posts()) : ?>
                 <div class="section-title mb-4">
                     <span class="section-title__tagline fade-right">Our Purpose</span>
                     <h2 class="section-title__title fade-left"><?php echo get_post_meta( get_the_ID(), 'mission_vision_title', true ); ?></h2>
+                    <?php $mission_intro = get_post_meta( get_the_ID(), 'mission_vision_intro', true ); ?>
+                    <?php if ( $mission_intro ) : ?>
+                    <div class="about-copy fade-right" style="color: rgba(255, 255, 255, 0.75); margin-top: 16px;"><?php echo wpautop( esc_html( $mission_intro ) ); ?></div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="rental-feature-item mission-card">
@@ -287,7 +311,7 @@ if ($partner_query->have_posts()) : ?>
                         <i class="fa fa-rocket"></i>
                     </div>
                     <div class="rf-text">
-                        <h4 class=" fade-left">Our Mission</h4>
+                        <h3 class=" fade-left">Our Mission</h3>
                         <p class=" fade-right"><?php echo get_post_meta( get_the_ID(), 'mission_vision_mission', true ); ?></p>
                     </div>
                 </div>
@@ -297,7 +321,7 @@ if ($partner_query->have_posts()) : ?>
                         <i class="fa fa-eye"></i>
                     </div>
                     <div class="rf-text">
-                        <h4 class=" fade-left">Our Vision</h4>
+                        <h3 class=" fade-left">Our Vision</h3>
                         <p class=" fade-right"><?php echo get_post_meta( get_the_ID(), 'mission_vision_vision', true ); ?></p>
                     </div>
                 </div>

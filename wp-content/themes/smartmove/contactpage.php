@@ -25,6 +25,11 @@
                 <?php echo esc_html(get_theme_mod('footer_whatsapp')); ?>
             </a>
           </p>
+          <p class="mt-2 mb-0">
+            <a href="https://wa.me/<?php echo esc_attr( preg_replace('/\D+/', '', get_theme_mod('footer_whatsapp')) ); ?>" target="_blank" rel="noopener" class="text-decoration-none" style="color:#25d366; font-weight:600;">
+                <i class="bi bi-whatsapp"></i> Chat on WhatsApp
+            </a>
+          </p>
         </div>
       </div>
       <?php endif; ?>

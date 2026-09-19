@@ -6,7 +6,6 @@
     // Fetch fleet fields
     $hourly = get_post_meta( get_the_ID(), 'hourly', true );
     $full_day = get_post_meta( get_the_ID(), 'full_day', true );
-    $whatsapp_number = "911234567890"; // Update with your number
     $car_name = get_the_title();
 
     $seats = get_post_meta( get_the_ID(), 'number_of_seats', true );
